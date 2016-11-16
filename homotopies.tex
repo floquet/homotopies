@@ -1,37 +1,9 @@
-%% 
-%% Copyright 2007, 2008, 2009 Elsevier Ltd
-%% 
-%% This file is part of the 'Elsarticle Bundle'.
-%% ---------------------------------------------
-%% 
-%% It may be distributed under the conditions of the LaTeX Project Public
-%% License, either version 1.2 of this license or (at your option) any
-%% later version.  The latest version of this license is in
-%%    http://www.latex-project.org/lppl.txt
-%% and version 1.2 or later is part of all distributions of LaTeX
-%% version 1999/12/01 or later.
-%% 
-%% The list of all files belonging to the 'Elsarticle Bundle' is
-%% given in the file `manifest.txt'.
-%% 
 
 %% Template article for Elsevier's document class `elsarticle'
 %% with numbered style bibliographic references
 %% SP 2008/03/01
 
 \documentclass[preprint,12pt]{elsarticle}
-
-%% Use the option review to obtain double line spacing
-%% \documentclass[authoryear,preprint,review,12pt]{elsarticle}
-
-%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
-%% for a journal layout:
-%% \documentclass[final,1p,times]{elsarticle}
-%% \documentclass[final,1p,times,twocolumn]{elsarticle}
-%% \documentclass[final,3p,times]{elsarticle}
-%% \documentclass[final,3p,times,twocolumn]{elsarticle}
-%% \documentclass[final,5p,times]{elsarticle}
-%% \documentclass[final,5p,times,twocolumn]{elsarticle}
 
 %% For including figures, graphicx.sty has been loaded in
 %% elsarticle.cls. If you prefer to use the old commands
@@ -42,16 +14,14 @@
 % \expandafter\let\csname binom\endcsname\relax
 % \expandafter\let\csname endebinom\endcsname\relax
 
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amstext}
-%% The amsthm package provides extended theorem environments
-%% \usepackage{amsthm}
+\usepackage{amsmath,amssymb,amstext,amsthm}
+
+\usepackage{color} % identify edits
 
 %% The lineno packages adds line numbers. Start line numbering with
 %% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
 %% for the whole article with \linenumbers.
-%% \usepackage{lineno}
+\usepackage{lineno}
 \include{latex_tools/declarations}
 
 \journal{Advances in Mathematics}
@@ -155,22 +125,15 @@ If $a_{2k}$ are the coefficients in the Zernike polynomial basis for the cone an
 \end{equation}
 hence $\abs{a_{2k}} = \abs{b_{2k}}$. In this paper we want to explain this fact and explore whether there are other families of surfaces exhibiting a similar behavior.
 
-%
 %   \includegraphics[ trim = 0cm 0cm 0cm 1cm, width = 2.5in ]{eps/sphere} \qquad
 \begin{figure}[t] %  figure placement: here, top, bottom, or page
    \centering
-%   \includegraphics[ width = 2.5in ]{graphics/sphere} \qquad
-%   \includegraphics[ width = 2.5in ]{graphics/cone} 
    \includegraphics[ width = 2.5in ]{graphics/sphere} \qquad
    \includegraphics[ width = 2.5in ]{graphics/cone} 
    \caption{Two fundamental wavefronts: the sphere (left) and the cone (right). The sphere represents the wavefront created by a static point charge, the cone an inertial point charge (Cherenkov radiation).}
    \label{fig:wavefronts}
 \end{figure}
 %
-
-%   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +
-%\section{Methods}
-%\label{sec:methods}
 
 %   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +
 \section{Theory and methods}
@@ -234,7 +197,6 @@ Zernike's set was originally posited as a Fourier sine series with polynomial we
   \begin{split}
     R_{n}^{m}(r) 
     & = \paren{-1}^{\frac{n-m}{2}} \tbinom{\frac{n-m}{2}}{m} r^{m}\,_{2}F_{1} \paren{\frac{n+m+2}{2}, -\frac{n-m}{2}, m+1,r^{2}}\\
-%    & = \paren{-1}^{\frac{n-m}{2}} \choose{\frac{n-m}{2}}{m} r^{m}\,_{2}F_{1} \paren{\frac{n+m+2}{2}, -\frac{n-m}{2}, m+1,r^{2}}\\
     & = \frac{r^{-m}}{\paren{\frac{n-m}{2}}!} \paren{\frac{d}{d\paren{r^{2}}}}^{\frac{n-m}{2}} \left\{r^{n+m} \paren{r^{2}-1}^{\frac{n-m}{2}} \right\}
   \end{split}
 \end{equation}
@@ -250,12 +212,27 @@ The generating function for the radial polynomials is given as \cite[p. 525]{BW}
   \frac{\paren{1+z-\term}^{m}} {\paren{2zr}^{m} \term} = \sum_{s=0}^{\infty} z^{s} R_{m+2s}^{\pm m}(r)
   \label{eq:zernikegen}
 \end{equation}
-This initial investigation is concerned only with the rotationally invariant polynomials which are characterized by $m=0$. The recursion relationship for this reduced set is
+This initial investigation is concerned only with the rotationally invariant polynomials which are characterized by $m=0$. The recursion relationship for this reduced set is given in lemma \ref{thm:rizp}.
 %%%
+{\color{blue}
+\begin{myTheorem}[Summation form of rotationally invariant polynomials]  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+The rotationally invariant Zernike polynomials are expressed as
 \begin{equation}
   R_{2k}^{0}(r) = \sum_{j=0}^{k}{\paren{-1}^j\frac{(2k-j)!}{j!\paren{\paren{k-j}!}^{2}}r^{2(k-j)}} .
   \label{eq:reduced}
 \end{equation}
+\label{thm:rizp}
+\end{myTheorem}  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+\begin{proof}  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+Define . Therefore
+  % % % EQUATION
+  \begin{equation}
+   a = b ,
+  \end{equation}
+  % % %
+with the equality is achieved in the limit $b\to 1$.
+\end{proof}  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+}
 %%%
 The first few terms of this sequence are shown here:
 \begin{multline}
@@ -268,17 +245,28 @@ The family of functions $R_{n}^{0}(r)$ can be generated by a Gram-Schmidt orthog
   % % % EQUATION
   \begin{equation}
     \text{span } \lst{r^{2k}}_{k=0}^{\infty} = \text{span } \lst{R_{2k}^{0}}_{k=0}^{\infty}
-  \end{equation}
+  \end{equation}	
   % % %
+%%%
+{\color{blue}
+\begin{myTheorem}[Construction of the Zernike polynomials via the Gram-Schmidt process]  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+The radial subset of the Zernike polynomial sequence can be constructed by a Gram-Schmidt orthogonalization of the monomial sequence $\lst{r^{2k}}_{k=0}^{\infty}$.
+  \begin{equation}
+    E = mc^{2}
+  \end{equation}	
+\end{myTheorem}  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+%%
+\begin{proof}  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+  We need proof
+\end{proof}  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+}
+%%%
 By the extension of the \mst theorem to the unit disk \cite{ms} we can cite the fact that $\sum_{k=1}^{\infty}\frac{1}{2k} = \infty$ signals the culled set of disk polynomials of Zernike $\lst{R_{2k}^{0}}_{k=0}^{\infty}$ are dense in the space of rotationally invariant functions over the unit disk which guarantees uniform convergence of the sequence of partial sums.
 
 The normalization for the set with zero angular velocity is given by
 % = =  e q u a t i o n
   \begin{equation}
-    %\begin{split}
       \int_{\disc} \paren{R_{2k}^{0}(r)}^{2} r dr d\phi = \frac{1} { 2\paren{2k + 1} }, \qquad k = 0, 1, 2, \dots
-    %\end{split}
-    %\label{eqn:}
   \end{equation}
 % = =
 
@@ -290,12 +278,38 @@ The Zernike coefficients for the cone and the sphere can be computed in a straig
           \int_{0}^{1} \paren{\paren{1-r}r^{n}}rdr 
       &= \frac{1}{\paren{n+2}\paren{n+3}}, \\
     \int_{0}^{1} \paren{\sqrt{1-r^{2}} r^{n}}rdr 
-%      &= \frac{\sqrt{\pi}}{4} \frac{\Gamma{\paren{\frac{n+2}{n}}}} {\Gamma{\paren{\frac{n+5}{n}}}}.
       &= \frac{\sqrt{\pi}}{4} \Gamma{\paren{\frac{n+2}{n}}}  \paren{\Gamma{\paren{\frac{n+5}{n}}}}^{-1},
     \end{split}
     \label{eq:monomial}
 \end{equation}
-with $n$ being positive and even. These relations yield the explicit series expansions for the cone, $A(r)$, the sphere, $B(r)$, as
+with $n$ being positive and even. 
+%%%
+The Zernike coefficients for the cone and the sphere can be computed using affine transformations of the amplitudes for even monomials, which are given in the following lemma:
+{\color{blue}
+\begin{myTheorem}[Integral of products of shape functions and monomials]  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+\begin{equation}
+    \begin{split}
+          \int_{0}^{1} \paren{\paren{1-r}r^{n}}rdr 
+      &= \frac{1}{\paren{n+2}\paren{n+3}}, \\
+    \int_{0}^{1} \paren{\sqrt{1-r^{2}} r^{n}}rdr 
+      &= \frac{\sqrt{\pi}}{4} \Gamma{\paren{\frac{n+2}{n}}}  \paren{\Gamma{\paren{\frac{n+5}{n}}}}^{-1},
+    \end{split}
+    \label{eq:monomial}
+\end{equation}
+with $n$ being positive and even. 
+\end{myTheorem}  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+\begin{proof}  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+The first integral is an immediate consequence of integrating the product function $r^{n+1}-r^{n+2}$.
+  % % % EQUATION
+  \begin{equation}
+   a = b ,
+  \end{equation}
+  % % %
+with the equality is achieved in the limit $b\to 1$.
+\end{proof}  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+}
+%%%
+These relations yield the explicit series expansions for the cone, $A(r)$, the sphere, $B(r)$, as
 % = =  e q u a t i o n
   \begin{equation}
     \begin{split}
@@ -401,12 +415,104 @@ For the case of the cone and the sphere we see from \eqref{eq:defn} that
   b_{0} = \frac{2}{3}.
 \end{equation}
 
+%   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++ 
+\subsection{Rewrite previous section as a proof}
+The following theorem establishes the simple yet surprising relationship between the coefficients of the cone and the sphere.
+%%%
+{\color{blue}
+\begin{myTheorem}[Amplitudes for the cone and sphere]  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+The amplitudes for the cone and the sphere are related according to
+  \begin{equation}
+    \begin{split}
+      A_{0} &= 1 - B_{0}, \\
+      A_{2k} &= \paren{-1}^{k+1}B_{2k}, \quad k=1,2,\dots .
+    \end{split}
+    \label{eq:23X}
+  \end{equation}
+  \label{thm:main}
+\end{myTheorem}  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+%
+\begin{proof}  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+This is a consequence of two facts. First, the radial Zernike polynomials $\paren{m=0}$ are nothing more than the Legendre polynomials in the variable $\rho=2r^{2}-1$. Indeed, if we set $m=0$ in \eqref{eq:zernikegen} we get
+\begin{equation*}
+  \paren{\term}^{-1/2} = \sum_{s=0}^{\infty} z^{s} R_{2s}^{0}(r).
+\end{equation*}
+which is nothing more than the generating function for the Legendre polynomials
+\begin{equation*}
+  \paren{\sqrt{1-2z\rho+z^{2}}}^{-1/2} = \sum_{s=0}^{\infty} z^{s}P_{s}(\rho).
+\end{equation*}
+after the identification $\rho=2r^{2}-1$, $\paren{-1\le \rho \le 1,\ 0 \le r \le 1}$. That is, if $\rho=2r^{2}-1$ then 
+\begin{equation*}
+  R_{2k}^{0}(r) = P_{k}\paren{2r^{2}-1} = P_{k}\paren{\rho}.
+\end{equation*}
+Second, in the variable $\rho$ the sphere and the cone become
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+    %
+      A\paren{\rho} & = 1 - \sqrt{\frac{1+\rho}{2}} = 1 + \alpha\paren{\rho}, \\
+    %
+      B\paren{\rho} & = \sqrt{\frac{1-\rho}{2}} = \beta\paren{\rho}.
+    %
+    \end{split}
+    \label{eq:rhov}
+  \end{equation}
+% = =
+The key observation is that the coefficients obey the parity relation
+\begin{equation}
+  \alpha\paren{\rho} = -\beta\paren{-\rho}.
+  \label{eq:parity}
+\end{equation}
+In terms of the new variable the expansion coefficients take the form
+% = =  e q u a t i o n
+  \begin{equation}
+    \begin{split}
+    \alpha\paren{\rho} & = \sum_{k=0}^{\infty} \alpha_{k} P_{k}\paren{\rho}, 
+     \quad \alpha_{k} = \frac{\int_{-1}^{1}\alpha(\rho) P_{k}\paren{\rho} d\rho}{\int_{-1}^{1} P_{k}^{2}\paren{\rho} d\rho} \\
+%
+    \beta\paren{\rho} & = \sum_{k=0}^{\infty} \beta_{k} P_{k}\paren{\rho}, 
+     \quad \beta_{k} = \frac{\int_{-1}^{1}\beta(\rho) P_{k}\paren{\rho} d\rho}{\int_{-1}^{1} P_{k}^{2}\paren{\rho} d\rho}.
+    %
+    \end{split}
+    \label{eq:defn}
+  \end{equation}
+% = =
+\end{proof}  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+}
+%%%
+The parity of the Legendre functions matches the parity of the index:
+\begin{equation}
+  P_{k}\paren{\rho} = \paren{-1}^{k} P_{k}\paren{-\rho}
+\end{equation}
+and this explains the oscillation in the sign exhibited in \eqref{eq:23}:
+\begin{equation}
+  \alpha_{2k} = \paren{-1}^{k+1} \beta_{2k}.
+  \label{eq:equals}
+\end{equation}
+In terms of smoothness it clearly follows that
+\begin{equation}
+  \abs{\alpha_{2k}} = \abs{\beta_{2k}},\ k=1,2,\dots,
+  \label{eq:canona}
+\end{equation}
+and the zero order (average) terms satisfy
+\begin{equation}
+  a_{0} + b_{0} = \alpha_{0} + \beta_{0} = 1.
+  \label{eq:canonb}
+\end{equation}
+For the case of the cone and the sphere we see from \eqref{eq:defn} that 
+\begin{equation}
+  a_{0} = \frac{1}{3}, \quad
+  b_{0} = \frac{2}{3}.
+\end{equation}
+
 The equivalence of regularity for these two different surfaces stemmed from two facts. First is the behavior of the first derivative. Neither function is differentiable over the domain of the unit disk. The derivative of the cone has a jump discontinuity at the apex, yet the function satisfies the Lipschitz condition in any neighborhood of the origin. The derivative of the sphere diverges at the boundary, yet the function is of bounded variation. Second is the choice of the Zernike basis. Inspection of \eqref{eq:monomial} establishes the amplitudes do not have equal magnitudes in the monomial basis. 
 
 Surprised to find the homotopy between these very different surfaces, we searched for other cases. Only one line of investigation bore fruit: moving the pathologies to higher derivatives.
 
 %   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++   ++ 
 \subsection{Ultra--cone and ultra--sphere}
+While it is not clear why the cone and sphere have the exact same smoothness in the Zernike basis, it is clear that both surfaces are pathological in the first derivative. For the cone, the derivative at the origin is undefined. For the sphere, the first derivative grows without bound approaching the boundary. What if the pathologies are moved to higher derivatives?
+
 Using the results from the previous section, one can generalize the expression for these two surfaces. Such an extension leads to the definition of the ultra--cone family
 \begin{equation}
   A(\mu,r) = 1-r^{\mu}, \quad 0<\mu<\infty
@@ -462,26 +568,6 @@ The figures in tables \ref{tab:increase} and \ref{tab:decrease} are helpful for 
 		\begin{tabular}{ccccc}
 		  %
 		   $\mu$ && ultra--sphere && ultra--cone \\\hline
-%		  %
-%		   $\frac{1}{4}$ & \qquad \qquad & 
-% 		   \raisebox{-0.5\height}{\includegraphics [ width = 1.25in ] {graphics/usphere_025}} & \qquad \qquad &
-%		   \raisebox{-0.5\height}{\includegraphics [ width = 1.25in ] {graphics/ucone_025}}   \\
-%		  %
-%		   $\frac{1}{2}$ && 
-%		   \raisebox{-0.5\height}{\includegraphics [ width = 1.25in ] {graphics/usphere_05}} &&
-%		   \raisebox{-0.5\height}{\includegraphics [ width = 1.25in ] {graphics/ucone_05}}   \\
-%		  %
-%		   $1$ && 
-%		   \raisebox{-0.5\height}{\includegraphics [ width = 1.25in ] {graphics/sphere}} &&
-%		   \raisebox{-0.5\height}{\includegraphics [ width = 1.25in ] {graphics/cone}}   \\
-%		  %
-%		   $2$ && 
-%		   \raisebox{-0.5\height}{\includegraphics [ width = 1.25in ] {graphics/usphere_2}} &&
-%		   \raisebox{-0.5\height}{\includegraphics [ width = 1.25in ] {graphics/ucone_2}}   \\
-%		  %
-%		   $3$ && 
-%			 \raisebox{-0.5\height}{\includegraphics [ width = 1.25in ] {graphics/usphere_3}} &&
-%		   \raisebox{-0.5\height}{\includegraphics [ width = 1.25in ] {graphics/ucone_3}}   
 		  %
 		   $\frac{1}{4}$ & \qquad \qquad & 
  		   \raisebox{-0.5\height}{\includegraphics [ width = 1.25in ] {graphics/usphere_025}} & \qquad \qquad &
@@ -536,13 +622,10 @@ and the parity relation in \eqref{eq:parity} holds. We can take $-\frac{1}{2}<\m
 The previously cited work \cite[eq. 19]{22358} presents an integral expression for the equivalence of the cone and the sphere:
 % = =  e q u a t i o n
   \begin{equation}
-    %\begin{split}
       \int_{0}^{1} \paren{1-r} R_{n}^{0}(r) r dr = \paren{-1}^{n/2} \int_{0}^{1} \sqrt{ 1 - r^{2} }R_{n}^{0}(r) r dr, \quad n=0,2,4,\dots
-    %\end{split}
-    %\label{eqn:}
   \end{equation}
 % = =
-which can be reduced with the realization that Zernike polynomials for $n\ge1$ have zero mean:
+which can be reduced with the realization \cite[Theorem 1]{TCE} that Zernike polynomials for $n\ge1$ have zero mean:
 % = =  e q u a t i o n
   \begin{equation}
     %\begin{split}
@@ -561,7 +644,28 @@ Unexpectedly, the integral equality extends to the ultra surfaces:
 \end{equation}
 % = =
 where $\mu > -2$.
-
+%%%
+Unexpectedly, the integral equality extends to the ultra surfaces as seen in theorem \eqref{thm:ultras}:
+{\color{blue}
+\begin{myTheorem}[Integral equality for the ultra-surfaces]  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  \begin{equation}
+    \int_{0}^{1} \paren{1-r^{\mu}} R_{2k}^{0}(r) r dr = \paren{-1}^{k+1} \int_{0}^{1} \paren{ 1 - r^{2} }^{\mu/2}R_{2k}^{0}(r) r dr, \quad k=1,2,\dots
+    % \label{eq:integrals}
+	\end{equation}
+for $\mu > -2$.
+  \label{thm:ultras}
+\end{myTheorem}  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+%
+\begin{proof}  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+  \begin{equation*}   %  =   =   =   =   =
+  %\begin{split}
+    a = b
+    %\label{eq:}
+  %\end{split}
+  \end{equation*}
+\end{proof}
+}
+%%%%
 Sample equalities for three values of $\mu$ are shown in table \ref{tab:integrals}. The Zernike polynomial in each case is $R_{100}^{0}(r)$, displayed in figure \ref{fig:r100}.
 \begin{figure}[htbp] %  figure placement: here, top, bottom, or page
    \centering
@@ -633,8 +737,23 @@ The cases for arbitrary $\mu$ are discussed below. While the Fourier-Zernike coe
   %\end{split}
 \end{equation}
 % = =
-a simpler form is available. The first term $\paren{k=0}$ is given by
-% = =  e q u a t i o n
+a simpler form is available from \ref{thm:simple}.
+%%%
+{\color{blue}
+\begin{myTheorem}[Fourier-Zernike amplitudes for the ultra-sphere]  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  \begin{equation}
+    \int_{0}^{1} \paren{1 - r}^{\mu} R_{2k}^{0}(r) r dr = \paren{-1}^{k} \prod_{j=0}^{k-1}\paren{\mu - 2j} \paren{\prod_{j=0}^{k}\paren{\mu + 2(j+1)}}^{-1}
+  \end{equation}	
+  \label{thm:simple}
+\end{myTheorem}  %  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+%%
+\begin{proof}  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+  We need proof
+\end{proof}  %  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +
+}
+%%%
+ The first term $\paren{k=0}$ is given by
+ % = =  e q u a t i o n
 \begin{equation}
   \begin{split}
       a_{0}(\mu) &=  \frac{2}{\mu + 2},
@@ -645,10 +764,7 @@ a simpler form is available. The first term $\paren{k=0}$ is given by
 subsequent terms $\paren{k\ge1}$ are
 % = =  e q u a t i o n
 \begin{equation}
-  %\begin{split}
     a_{2k}(\mu) = \paren{-1}^{k} 2\paren{2k+1} \prod_{j=0}^{k-1}\paren{\mu - 2j} \paren{\prod_{j=0}^{k}\paren{\mu + 2(j+1)}}^{-1}
-    %\label{eqn:}
-  %\end{split}
 \end{equation}
 % = =
 which holds for $\mu>-2$. The recursion relationship for jumping from $2k$ to $2k+2$ is given by
@@ -789,6 +905,10 @@ A.~B. Bhatia, and E. Wolf, On the circle polynomials of Zernike and related orth
 \bibitem{Siegal}
 A.R. Siegal, On the \mst theorem for $C[0,1]$, 
 \emph{Proc. Amer. Math. Soc.}, vol.~36, pp. 161--166, 1972.
+
+\bibitem{TCE} D. Topa, J. Cooley and P. Embid.
+\newblock  {\em Scalar fields and limbic fields over the unit disk}
+\newblock  In print.
 
 \bibitem{ms}
 T. Trent, A \mst theorem for $C\paren{\overline{D}}$, 
